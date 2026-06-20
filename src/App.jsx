@@ -6,7 +6,7 @@ import Products from "./pages/Products";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
-
+import AddProduct from "./pages/AddProduct";
 
 function App(){
 
@@ -26,7 +26,10 @@ return (
 <Route path="/register" element={<Register />} />
 
 <Route path="/cart" element={<Cart />} />
-
+<Route 
+path="/add-product" 
+element={<AddProduct />} 
+/>
 </Routes>
 
 </BrowserRouter>
