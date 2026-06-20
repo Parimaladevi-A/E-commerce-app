@@ -25,10 +25,11 @@ alert(res.data.message);
 }
 catch(err){
 
-alert("Registration failed");
+console.log(err.response?.data);
+
+alert(err.response?.data?.message || "Registration failed");
 
 }
-
 }
 
 
