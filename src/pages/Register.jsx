@@ -1,70 +1,165 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import API from "../services/api";
+
 
 function Register(){
 
-const [name,setName]=useState("");
-const [email,setEmail]=useState("");
-const [password,setPassword]=useState("");
+
+const navigate = useNavigate();
 
 
-const registerUser = async(e)=>{
+const [name,setName] = useState("");
+const [email,setEmail] = useState("");
+const [password,setPassword] = useState("");
+
+
+
+
+const handleRegister = async(e)=>{
 
 e.preventDefault();
 
+
 try{
 
-const res = await API.post("/users/register",{
+
+await API.post("/users/register",{
+
 name,
 email,
 password
+
 });
 
-alert(res.data.message);
+
+
+alert("Register successful");
+
+
+navigate("/");
+
 
 }
-catch(err){
 
-console.log(err.response?.data);
+catch(error){
 
-alert(err.response?.data?.message || "Registration failed");
+
+console.log(error);
+
+
+alert(
+error.response?.data?.message || "Register failed"
+);
+
 
 }
-}
 
 
-return(
-<div>
+};
+
+
+
+
+return (
+
+<div className="auth-page">
+
+
+<div className="auth-card">
+
 
 <h1>Register</h1>
 
-<form onSubmit={registerUser}>
 
-<input 
+
+<form onSubmit={handleRegister}>
+
+
+<input
+
 placeholder="Name"
+
+value={name}
+
 onChange={(e)=>setName(e.target.value)}
+
+required
+
 />
 
-<input 
+
+
+<input
+
+type="email"
+
 placeholder="Email"
+
+value={email}
+
 onChange={(e)=>setEmail(e.target.value)}
+
+required
+
 />
 
-<input 
-placeholder="Password"
+
+
+<input
+
 type="password"
+
+placeholder="Password"
+
+value={password}
+
 onChange={(e)=>setPassword(e.target.value)}
+
+required
+
 />
+
+
 
 <button>
+
 Register
+
 </button>
+
+
 
 </form>
 
+
+
+
+<p>
+
+Already have account?
+
+
+<Link to="/">
+
+ Login
+
+</Link>
+
+
+</p>
+
+
+
 </div>
+
+
+</div>
+
 )
 
+
 }
+
 
 export default Register;

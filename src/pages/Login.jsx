@@ -1,23 +1,33 @@
-import {useState} from "react";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import API from "../services/api";
 
 
 function Login(){
 
-const [email,setEmail]=useState("");
-const [password,setPassword]=useState("");
+const navigate = useNavigate();
 
 
-const loginUser = async(e)=>{
+const [email,setEmail] = useState("");
+const [password,setPassword] = useState("");
+
+
+
+const handleLogin = async(e)=>{
 
 e.preventDefault();
 
+
 try{
 
+
 const res = await API.post("/users/login",{
+
 email,
 password
+
 });
+
 
 
 localStorage.setItem(
@@ -26,48 +36,103 @@ res.data.token
 );
 
 
+
 alert("Login successful");
 
 
-}
-catch(err){
+navigate("/home");
 
-alert("Login failed");
 
 }
 
+catch(error){
+
+console.log(error);
+
+alert(
+error.response?.data?.message || "Login failed"
+);
+
 }
+
+
+};
+
 
 
 return (
 
-<div>
+<div className="auth-page">
+
+
+<div className="auth-card">
+
 
 <h1>Login</h1>
 
 
-<form onSubmit={loginUser}>
+<form onSubmit={handleLogin}>
 
 
 <input
+
+type="email"
+
 placeholder="Email"
+
+value={email}
+
 onChange={(e)=>setEmail(e.target.value)}
+
+required
+
 />
+
 
 
 <input
+
 type="password"
+
 placeholder="Password"
+
+value={password}
+
 onChange={(e)=>setPassword(e.target.value)}
+
+required
+
 />
+
 
 
 <button>
+
 Login
+
 </button>
 
 
+
 </form>
+
+
+
+<p>
+
+New user?
+
+<Link to="/register">
+
+ Register
+
+</Link>
+
+</p>
+
+
+</div>
+
 
 </div>
 

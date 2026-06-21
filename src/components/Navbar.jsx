@@ -1,19 +1,114 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Navbar(){
 
-    return (
-        <nav>
-            <h2>E-Shop</h2>
+const navigate = useNavigate();
 
-            <Link to="/">Home</Link>
-            <Link to="/products">Products</Link>
-            <Link to="/cart">Cart</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+const [search,setSearch] = useState("");
 
-        </nav>
-    )
+
+
+const handleSearch = ()=>{
+
+navigate(`/products?search=${search}`);
+
+};
+
+
+
+return (
+
+<nav className="navbar">
+
+
+<div className="logo">
+
+E-Shop
+
+</div>
+
+
+
+<div className="search">
+
+
+<input
+
+placeholder="Search products..."
+
+value={search}
+
+onChange={(e)=>setSearch(e.target.value)}
+
+/>
+
+
+<button onClick={handleSearch}>
+
+🔍
+
+</button>
+
+
+</div>
+
+
+
+
+<div className="nav-links">
+
+
+<Link to="/home">
+
+Home
+
+</Link>
+
+
+
+<Link to="/products">
+
+Products
+
+</Link>
+
+
+
+<Link to="/cart">
+
+Cart
+
+</Link>
+
+
+
+<Link to="/orders">
+
+Orders
+
+</Link>
+
+
+
+<Link to="/">
+
+Login
+
+</Link>
+
+
+
+</div>
+
+
+
+</nav>
+
+)
+
 }
+
 
 export default Navbar;
