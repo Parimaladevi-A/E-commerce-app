@@ -1,0 +1,81 @@
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f5f5;
+}
+
+
+nav{
+
+    background:#222;
+    padding:15px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+
+}
+
+
+nav h2{
+
+    color:white;
+    margin-right:auto;
+
+}
+
+
+nav a{
+
+    color:white;
+    text-decoration:none;
+
+}
+
+
+button{
+
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:5px;
+    cursor:pointer;
+    margin:10px;
+
+}
+
+
+button:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+div{
+
+    padding:20px;
+
+}
+
+
+input{
+
+    display:block;
+    padding:10px;
+    margin:10px;
+    width:250px;
+
+}
+
+
+.product{
+
+    background:white;
+    padding:20px;
+    margin:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px #ccc;
+
+}
